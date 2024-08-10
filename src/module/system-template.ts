@@ -45,9 +45,9 @@ export namespace SystemTemplates {
   export interface item_universal extends SourceTemplates.item_universal {
     equipped: boolean; // Derived
   }
-  export interface licensed extends SourceTemplates.licensed {}
-  export interface destructible extends SourceTemplates.destructible {}
-  export interface action_tracking extends SourceTemplates.action_tracking {}
+  export interface licensed extends SourceTemplates.licensed { }
+  export interface destructible extends SourceTemplates.destructible { }
+  export interface action_tracking extends SourceTemplates.action_tracking { }
 
   // Allows for applying bonuses to specific roll types
   export interface RollBonusTargets {
@@ -175,8 +175,8 @@ export namespace SystemTemplates {
   export namespace NPC {
     // Everything herein is more or less an exact copy
     // These duplicated here for clarity and future proofing
-    export interface StatBlock extends SourceTemplates.NPC.StatBlock {}
-    export interface NullableStatBlock extends SourceTemplates.NPC.NullableStatBlock {}
+    export interface StatBlock extends SourceTemplates.NPC.StatBlock { }
+    export interface NullableStatBlock extends SourceTemplates.NPC.NullableStatBlock { }
 
     // This small helper type is just used to repair npc types "tags" field
     type NPCFixup<T extends { tags: TagData[]; uses: FullBoundedNum }> = Omit<
@@ -192,13 +192,13 @@ export namespace SystemTemplates {
       damage: Damage[][];
     }
 
-    export interface TraitData extends NPCFixup<SourceTemplates.NPC.TraitData> {}
+    export interface TraitData extends NPCFixup<SourceTemplates.NPC.TraitData> { }
 
-    export interface ReactionData extends NPCFixup<SourceTemplates.NPC.ReactionData> {}
+    export interface ReactionData extends NPCFixup<SourceTemplates.NPC.ReactionData> { }
 
-    export interface SystemData extends NPCFixup<SourceTemplates.NPC.SystemData> {}
+    export interface SystemData extends NPCFixup<SourceTemplates.NPC.SystemData> { }
 
-    export interface TechData extends NPCFixup<SourceTemplates.NPC.TechData> {}
+    export interface TechData extends NPCFixup<SourceTemplates.NPC.TechData> { }
 
     export type AnyFeature = TechData | SystemData | ReactionData | TraitData | WeaponData;
     export type AllFeature = TechData & SystemData & ReactionData & TraitData & WeaponData;
@@ -208,15 +208,15 @@ export namespace SystemTemplates {
   // Note that "didn't resolve" is distinct from null, and so we track that separately
   export type ResolvedEmbeddedRef<T> =
     | {
-        status: "resolved"; // Resolved successfully! Value should be usable
-        id: string;
-        value: T;
-      }
+      status: "resolved"; // Resolved successfully! Value should be usable
+      id: string;
+      value: T;
+    }
     | {
-        status: "missing"; // Was unable to resolve successfully. This indicates an invalid ref that should be purged
-        id: string;
-        value: null;
-      };
+      status: "missing"; // Was unable to resolve successfully. This indicates an invalid ref that should be purged
+      id: string;
+      value: null;
+    };
   export type ResolvedSyncUuidRef<T> = ResolvedEmbeddedRef<T>;
 }
 
@@ -327,12 +327,12 @@ export namespace SystemData {
       tags: Tag[];
     };
   }
-  export interface License extends SourceData.License {}
+  export interface License extends SourceData.License { }
   export interface Mech
     extends SystemTemplates.actor_universal,
-      SystemTemplates.action_tracking,
-      SystemTemplates.heat,
-      SystemTemplates.struss {
+    SystemTemplates.action_tracking,
+    SystemTemplates.heat,
+    SystemTemplates.struss {
     overcharge: number;
     repairs: FullBoundedNum;
     core_active: boolean;
@@ -368,10 +368,10 @@ export namespace SystemData {
 
   export interface MechSystem
     extends SystemTemplates.item_universal,
-      SystemTemplates.bascdt,
-      SystemTemplates.destructible,
-      SystemTemplates.licensed,
-      SystemTemplates.uses {
+    SystemTemplates.bascdt,
+    SystemTemplates.destructible,
+    SystemTemplates.licensed,
+    SystemTemplates.uses {
     effect: string;
     sp: number;
     description: string;
@@ -380,9 +380,9 @@ export namespace SystemData {
   }
   export interface MechWeapon
     extends SystemTemplates.item_universal,
-      SystemTemplates.destructible,
-      SystemTemplates.licensed,
-      SystemTemplates.uses {
+    SystemTemplates.destructible,
+    SystemTemplates.licensed,
+    SystemTemplates.uses {
     deployables: LIDRef[];
     integrated: LIDRef[];
     sp: number;
@@ -434,9 +434,9 @@ export namespace SystemData {
   }
   export interface Npc
     extends SystemTemplates.actor_universal,
-      SystemTemplates.action_tracking,
-      SystemTemplates.heat,
-      SystemTemplates.struss {
+    SystemTemplates.action_tracking,
+    SystemTemplates.heat,
+    SystemTemplates.struss {
     notes: string;
     meltdown_timer: number | null;
     tier: number;
@@ -476,6 +476,9 @@ export namespace SystemData {
 
   export interface PilotArmor extends SystemTemplates.item_universal, SystemTemplates.bascdt, SystemTemplates.uses {
     description: string;
+    effect: string;
+    deployables: LIDRef[];
+    actions: ActionData[];
   }
   export interface PilotGear extends SystemTemplates.item_universal, SystemTemplates.bascdt, SystemTemplates.uses {
     description: string;
@@ -526,9 +529,9 @@ export namespace SystemData {
     // Derived attributes
     grit: number;
   }
-  export interface Reserve extends SourceData.Reserve {}
-  export interface Skill extends SourceData.Skill {}
-  export interface Status extends SourceData.Status {}
+  export interface Reserve extends SourceData.Reserve { }
+  export interface Skill extends SourceData.Skill { }
+  export interface Status extends SourceData.Status { }
 
   export interface Talent extends SystemTemplates.item_universal {
     // Copied
@@ -563,10 +566,10 @@ export namespace SystemData {
   }
   export interface WeaponMod
     extends SystemTemplates.item_universal,
-      SystemTemplates.bascdt,
-      SystemTemplates.destructible,
-      SystemTemplates.licensed,
-      SystemTemplates.uses {
+    SystemTemplates.bascdt,
+    SystemTemplates.destructible,
+    SystemTemplates.licensed,
+    SystemTemplates.uses {
     added_tags: Tag[];
     added_damage: Damage[];
     effect: string;

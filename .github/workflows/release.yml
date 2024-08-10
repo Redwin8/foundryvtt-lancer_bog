@@ -28,7 +28,7 @@ jobs:
           TAG_NAME=${GITHUB_REF_NAME}
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "tag_name=$TAG_NAME" >> $GITHUB_OUTPUT
-          echo "zip_name=lancer-$TAG_NAME.zip" >> $GITHUB_OUTPUT
+          echo "zip_name=lancerbog-$TAG_NAME.zip" >> $GITHUB_OUTPUT
 
       # Verify correct naming
       - name: Verify correct naming
@@ -78,4 +78,4 @@ jobs:
           # TODO: can we automatically extract the changelog for this release?
           body: |
 
-            [Full changelog](https://github.com/Eranziel/foundryvtt-lancer/blob/master/CHANGELOG.md)
+            [Full changelog](https://github.com/Redwin8/pilotgear_lancervtt_expac/blob/justplaying2/CHANGELOG.md)
