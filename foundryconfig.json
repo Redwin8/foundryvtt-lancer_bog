@@ -2,6 +2,6 @@
   "dataPath": "/path/to/foundry/data",
   "systemName": "lancerbog",
   "repository": "https://github.com/Redwin8/foundryvtt-lancer_bog",
-  "rawURL": "https://github.com/Redwin8/foundryvtt-lancer_bog/releases/latest/download",
-  "downloadURL": "https://github.com/Redwin8/foundryvtt-lancer_bog/releases/download"
+  "rawURL": "https://github.com/Redwin8/foundryvtt-lancer_bog/releases/download/v1/lancerbog-v1.zip",
+  "downloadURL": "https://github.com/Redwin8/foundryvtt-lancer_bog/releases/tag/v1"
 }
