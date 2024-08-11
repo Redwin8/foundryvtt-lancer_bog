@@ -384,7 +384,7 @@ export function pilotArmorSlot(armor_path: string, options: HelperOptions): stri
               <div class="compact-stat">
                 <i class="mdi mdi-heart i--s i--dark"></i>
                 <span class="minor">+${hp_val}</span>
-              </div>
+              </div>s
               <div class="compact-stat">
                 <i class="cci cci-edef i--s i--dark"></i>
                 <span class="minor">${edef_val}</span>
@@ -399,9 +399,7 @@ export function pilotArmorSlot(armor_path: string, options: HelperOptions): stri
               </div>
             </div>
             <div class="effect-text" style=" padding: 5px">
-              ${armor.system.description}
-              ${armor.system.actions}
-              ${armor.system.deployables}
+              blarg
             </div>
             ${compactTagListHBS(armor_path + ".system.tags", options)}
           </div>`;
