@@ -59,7 +59,7 @@ async function rebuild_pack(name) {
       "--type",
       "System",
       "--id",
-      "lancer",
+      "lancerbog",
       "-n",
       name,
       "--in",
