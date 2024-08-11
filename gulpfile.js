@@ -59,7 +59,7 @@ async function rebuild_pack(name) {
       "--type",
       "System",
       "--id",
-      "lancer",
+      "lancerbog",
       "-n",
       name,
       "--in",
@@ -218,7 +218,7 @@ async function packageBuild() {
     await fs.copy(path.join(manifest.root, manifest.name), path.join("package", manifest.name));
 
     // Initialize the zip file
-    const zipName = `${manifest.file.id}-v${manifest.file.version}.zip`;
+    const zipName = `lancerbog-v${manifest.file.version}.zip`;
     const zipFile = fs.createWriteStream(path.join("package", zipName));
     const zip = archiver("zip", { zlib: { level: 9 } });
 
