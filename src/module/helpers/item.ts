@@ -289,9 +289,9 @@ export function bonusesDisplay(bonuses_path: string, edit: boolean, options: Hel
       <div class="lancer-header lancer-bonus">
         <span class="left">// Bonuses</span>
         ${inc_if(
-          `<a class="gen-control fas fa-plus" data-action="append" data-path="${bonuses_path}" data-action-value="(struct)bonus"></a>`,
-          edit
-        )}
+    `<a class="gen-control fas fa-plus" data-action="append" data-path="${bonuses_path}" data-action-value="(struct)bonus"></a>`,
+    edit
+  )}
       </div>
       ${items.join("\n")}
     </div>
@@ -327,18 +327,16 @@ export function bondPower(bond_path: string, power_index: number, options: Helpe
         ${power.veteran ? `<i class="mdi mdi-alpha-v-box i--sm"></i>` : ``}
         ${power.master ? `<i class="mdi mdi-alpha-m-box i--sm"></i>` : ``}
       </div>
-      ${
-        power.uses
-          ? `<div class="flexrow">
+      ${power.uses
+      ? `<div class="flexrow">
             ${body}
-            ${
-              power.uses && power.uses.max
-                ? bondPowerUsesIndicator(bond, power_index, `${bond_path}.system.powers.${power_index}`)
-                : ""
-            }
-          </div>`
-          : `${body}`
+            ${power.uses && power.uses.max
+        ? bondPowerUsesIndicator(bond, power_index, `${bond_path}.system.powers.${power_index}`)
+        : ""
       }
+          </div>`
+      : `${body}`
+    }
     </div>
   `;
 }
@@ -402,6 +400,8 @@ export function pilotArmorSlot(armor_path: string, options: HelperOptions): stri
             </div>
             <div class="effect-text" style=" padding: 5px">
               ${armor.system.description}
+              ${armor.system.actions}
+              ${armor.system.deployables}
             </div>
             ${compactTagListHBS(armor_path + ".system.tags", options)}
           </div>`;
@@ -434,9 +434,8 @@ export function pilotWeaponRefview(weapon_path: string, options: HelperOptions):
     limitedUsesIndicator(weapon, weapon_path);
   }
 
-  return `<div class="set ${
-    EntryType.PILOT_WEAPON
-  } ref drop-settable card clipped-top pilot-weapon-compact item lancer-border-weapon"
+  return `<div class="set ${EntryType.PILOT_WEAPON
+    } ref drop-settable card clipped-top pilot-weapon-compact item lancer-border-weapon"
     ${ref_params(weapon, weapon_path)} 
     data-accept-types="${EntryType.PILOT_WEAPON}"
   >
@@ -553,8 +552,8 @@ export function reserveRefView(reserve_path: string, options: HelperOptions): st
   let resType = resTypes.includes(reserve.system.type)
     ? reserve.system.type
     : resTypes.includes(reserve.system.label)
-    ? reserve.system.label
-    : reserve.system.type;
+      ? reserve.system.label
+      : reserve.system.type;
   switch (resType) {
     case "Bonus": // missing?
       icon = "cci cci-accuracy";
@@ -650,9 +649,8 @@ export function mechWeaponDisplay(weapon_path: string, mod_path: string | null, 
     profiles = `<div class="flexrow weapon-profile-wrapper">`;
     for (let i = 0; i < weapon.system.profiles.length; i++) {
       let p = weapon.system.profiles[i];
-      profiles += `<a class="gen-control weapon-profile ${
-        i === weapon.system.selected_profile_index ? "selected-profile" : ""
-      }"
+      profiles += `<a class="gen-control weapon-profile ${i === weapon.system.selected_profile_index ? "selected-profile" : ""
+        }"
 data-action="set" data-action-value="(int)${i}" data-path="${weapon_path}.system.selected_profile_index">
 <span class="minor">${p.name}</span>
 </a>`;
@@ -1181,13 +1179,12 @@ export function buildDeployableHTML(
       ${options?.vertical ? "" : `<hr class="vsep">`}
     </div>
     <div style="grid-area: desc">${detailText ? detailText : ""}</div>
-    ${
-      actionText
-        ? `
+    ${actionText
+      ? `
           <div style="grid-area: action">${actionText}</div>
           <div style="grid-area: action-chip">${actionChips.join("\n")}</div>
           `
-        : ""
+      : ""
     }
   </div>
   `;
@@ -1218,9 +1215,8 @@ export function buildChipHTML(
   const activationClass = `activation-${slugify(activation, "-")}`;
   const themeClass = activationStyle(activation);
   const interactiveClass = options?.nonInteractive ? "noninteractive" : "";
-  const label = `${
-    flowData?.label ? `${flowData.label.toUpperCase()} - ` : `${!options?.nonInteractive ? "USE " : ""}`
-  }${activation.toUpperCase()}`;
+  const label = `${flowData?.label ? `${flowData.label.toUpperCase()} - ` : `${!options?.nonInteractive ? "USE " : ""}`
+    }${activation.toUpperCase()}`;
   if (flowData && flowData.uuid && flowData.path !== undefined) {
     if (!flowData.icon) flowData.icon = `<i class="${activationIcon(activation)} i--sm"></i>`;
     let data = `data-uuid=${flowData.uuid} data-path="${flowData.path}"`;
@@ -1249,9 +1245,8 @@ export function buildCounterHTML(
 ): string {
   let hexes = [...Array(data.max)].map((_ele, index) => {
     const available = index + 1 <= data.value;
-    return `<i class="counter-hex mdi ${
-      available ? "mdi-hexagon-slice-6" : "mdi-hexagon-outline"
-    } theme--light" data-available="${available}" data-path="${path}"></i>`;
+    return `<i class="counter-hex mdi ${available ? "mdi-hexagon-slice-6" : "mdi-hexagon-outline"
+      } theme--light" data-available="${available}" data-path="${path}"></i>`;
   });
 
   return `
@@ -1275,9 +1270,8 @@ export function buildCounterHeader(
 ): string {
   const contextMenu = options?.noContextMenu
     ? ""
-    : `<a class="lancer-context-menu" data-path="${path}" data-can-delete="${
-        options?.canDelete ? options.canDelete : false
-      }">
+    : `<a class="lancer-context-menu" data-path="${path}" data-can-delete="${options?.canDelete ? options.canDelete : false
+    }">
         <i class="fas fa-ellipsis-v"></i>
       </a>`;
   return `
